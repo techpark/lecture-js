@@ -1,0 +1,787 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Shower Presentation Engine</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Технопарк</h1>
+		<p>Лекция Х: JS</p>
+	</header>
+	<section class="slide shout"><div>
+		<h2>Основные элементы языка</h2>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Переменные: объявление</h2>
+		<pre>
+			<code class="js">
+				var x = 1;
+				var x, y, z;
+				var x = 1, y, z;
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Переменные: использование</h2>
+		<pre>
+			<code class="js">
+				var x, y, z;
+
+				x = y = 10;
+				z = "some string";
+				x = func(x, y, z);
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: число</h2>
+		<pre>
+			<code class="js">
+				100
+				-1
+				1.004
+				0xFF
+				010
+				1e3
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: число (Infinity)</h2>
+		<pre>
+			<code class="js">
+				alert(1 / 0);
+				alert(-1 / 0);
+
+				isFinite(1); // false
+				isFinite(1 / 0); // true
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: число (NaN)</h2>
+		<pre>
+			<code class="js">
+				alert(0 / 0);
+
+				isNaN(0 / 0); // true
+
+				var n = 0 / 0;
+				alert(n == n); // false
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: число (parseInt/parseFloat)</h2>
+		<pre>
+			<code class="js">
+				parseInt("-1"); // -1
+				parseInt("1.004"); // 1
+				parseFloat("1.004"); // 1.004
+				parseInt("0xFF"); // 255
+
+				parseInt("a255"); // NaN
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: число (Math)</h2>
+		<pre>
+			<code class="js">
+				Math.sqrt(x)
+				Math.sqrt(x)
+				Math.pow(x, exp)
+				etc.
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: строка</h2>
+		<pre>
+			<code class="js">
+				var s = "строка";
+
+				alert("я\nстрока");
+				alert("я – \"");
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: строка (преобразования)</h2>
+		<pre>
+			<code class="js">
+				var s = "Cтр";
+				s += "ока";
+
+				alert(s.charAt(2)); // "р"
+				alert(s.toLowerCase()); // "строка"
+				alert(s.toUpperCase()); // "СТРОКА"
+				alert(s.indexOf("пека")); // -1
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: строка (поиск подстроки)</h2>
+		<pre>
+			<code class="js">
+				var s = "Строка в строке"
+				alert(s.indexOf("ок")); // 3
+				alert(s.indexOf("ок", 4)); // 12
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: строка (взятие подстроки)</h2>
+		<pre>
+			<code class="js">
+				var s = "длинная строка"
+				alert(s.substring(2, 3)); // "р"
+				alert(s.substr(2, 3)); // "рок"
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: boolean</h2>
+		<pre>
+			<code class="js">
+				var done = true;
+				done = false;
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: null</h2>
+		<pre>
+			<code class="js">
+				var aliens = null;
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: undefined</h2>
+		<pre>
+			<code class="js">
+				var alienIsOneOfUs; // undefined
+
+				alienIsOneOfUs = void 0; // undefined
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Типы данных: object</h2>
+		<pre>
+			<code class="js">
+				var lecturerSettings = {
+					minStudentRating: 2,
+					maxStudentRating: 5
+				};
+
+				minStudentRating = 5;
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Операторы</h2>
+		<pre>
+			<code class="js">
+				1 + 10; // 11
+				"стр" + "ока"; // "строка"
+				20 - 9; // 11
+				10 / 2; // 5
+				30 * 1.3 // 39
+				x = 10; 
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Операторы: i++/i--</h2>
+		<pre>
+			<code class="js">
+				var x = 1;
+				x++; // x == 2
+				x--; // x == 1
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Операторы: ++i/--i</h2>
+		<pre>
+			<code class="js">
+				var x = 1;
+				++x; // x == 2
+				--x; // x == 1
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Операторы: ++i++/--i--</h2>
+		<pre>
+			<code class="js">
+				var x = 1;
+				alert(x++); // 1
+				alert(x); // 2
+
+				x = 1;
+				alert(++x); // 2
+				alert(x); // 2
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Операторы: &lt;, &gt;, &lt;=, &gt;=</h2>
+		<pre>
+			<code class="js">
+				var a = 1;
+				alert(a &lt; 2); // true
+				alert(a &lt;= 2); // true
+
+				a = 2;
+				alert(a &lt; 2); // false
+				alert(a &lt;= 2); // true
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Операторы: ==, ===</h2>
+		<pre>
+			<code class="js">
+				var a = 2;
+				alert(a == 2); // true
+				alert(a === 2); // true
+
+				a = "2";
+				alert(a == 2); // true
+				alert(a === 2); // false
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Неявное приведение типов</h2>
+		<pre>
+			<code class="js">
+				var o = {
+					valueOf: function(){
+						return 10;
+					}
+				};
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Неявное приведение типов</h2>
+		<pre class="place l">
+			<code class="js">
+				alert(1 + o); // 11
+				alert(2 * o); // 20
+				alert("result: " + o); // "result: 10";
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Неявное приведение типов</h2>
+		<pre class="place l">
+			<code class="js">
+				alert(10 == o); // true
+				alert(10 === o); // false
+				alert(typeof 10); // "number"
+				alert(typeof o); // "object"
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>typeof</h2>
+		<pre>
+			<code class="js">
+				alert(typeof 10); // "number"
+				alert(typeof "string"); // "string"
+				alert(typeof {}); // "object"
+				alert(typeof function(){}); // "function"
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Условные операторы: if</h2>
+		<pre>
+			<code class="js">
+				var some = false, x = 0;
+				if (some){
+					x++;
+				} else {
+					x--;
+				}
+				alert(x); // -1
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Условные операторы: if</h2>
+		<pre>
+			<code class="js">
+				if (some){
+					...
+				} else if (some2) {
+					...
+				} else {
+					...
+				}
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Условные операторы: ?</h2>
+		<pre>
+			<code class="js">
+				var x = random();
+
+				if (x > 0){
+					func(x);
+				} else {
+					func(x + 100);
+				}
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Условные операторы: ?</h2>
+		<pre>
+			<code class="js">
+				var x = random();
+
+				func(x > 0 ? x : x + 100);
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Логические операторы</h2>
+		<pre>
+			<code class="js">
+				var x = 10, y = true;
+
+				if (y){
+					alert("TADA!!!")
+				}
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Логические операторы</h2>
+		<pre>
+			<code class="js">
+				var x = 10, y = true;
+
+				if (y || x &lt; 0){
+					alert("TADA!!!")
+				}
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Логические операторы</h2>
+		<pre>
+			<code class="js">
+				var x = 10, y = true;
+
+				if (!y || x &lt; 0){
+					alert("TADA!!!")
+				}
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Логические операторы</h2>
+		<pre>
+			<code class="js">
+				var x = 1;
+
+				false &amp;&amp; (x++);
+				alert(x); // 1
+				false || (x++);
+				alert(x); // 2
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Цикл while</h2>
+		<pre>
+			<code class="js">
+				while (true){}
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Цикл while</h2>
+		<pre>
+			<code class="js">
+				var x = 0;
+
+				while (x &lt; 10){
+					x++;
+				}
+
+				alert(x); // 10
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Цикл do while</h2>
+		<pre>
+			<code class="js">
+				var x = 0;
+
+				do {
+					x = 100;
+				} while (x &gt; 190);
+
+				alert(x); // 100
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Цикл for</h2>
+		<pre>
+			<code class="js">
+				var x = 0;
+
+				for (var i = 0; i &lt; 10; i++){
+					x++;
+				}
+
+				alert(x); // 10
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>break</h2>
+		<pre>
+			<code class="js">
+				var x = 0;
+				while (true){
+					if (x == 10) break;
+					x++;
+				}
+
+				alert(x); // 10
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>continue</h2>
+		<pre>
+			<code class="js">
+				var x = 0, i = 0;
+
+				while (i &lt; 100){
+					i++;
+					if (i &gt; 10) continue;
+					x++;
+				}
+				alert(x); // 10
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Функции: объявление</h2>
+		<pre>
+			<code class="js">
+				var XMan = function(name){
+					alert(name);
+				}
+
+				function XGirl(name){
+					alert(name);
+				}
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Функции: объявление</h2>
+		<pre>
+			<code class="js">
+				var XMan;
+				alert(typeof XMan); // undefined
+
+				XMan = function(name){
+					alert(name);
+				}
+				alert(typeof XMan); // function				
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Функции: объявление</h2>
+		<pre>
+			<code class="js">
+				alert(typeof XMan); // function
+
+				function XMan(name){
+					alert(name);
+				}
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Функции: return</h2>
+		<pre>
+			<code class="js">
+				function XMan(name){alert(name);}
+
+				var result = XMan("Вася");
+
+				alert(result); // undefined
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Функции: return</h2>
+		<pre class="place l">
+			<code class="js">
+				function XMan(name){<mark>return "Имя: " + name;</mark>}
+
+				var result = XMan("Вася");
+
+				alert(result); // "Имя: Вася"
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Функции: рекурсия</h2>
+		<pre class="place l">
+			<code class="js">
+				function factorial(n) {
+  					return (n != 1) ? n * factorial(n - 1) : 1;
+				}
+
+				alert(factorial(5)); // 120
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Регулярные выражения</h2>
+		<pre class="">
+			<code class="js">
+				
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<div id="frame" style="display:none">
+		</div>
+		<h2>DOM</h2>
+		<pre class="place l b" style="bottom: -50px">
+			<code class="html" id="htmlcode">
+				&lt;html&gt;
+					&lt;head&gt;
+						&lt;script id="script"&gt;&lt;/script&gt;
+					&lt;/head&gt;
+					&lt;body&gt;
+						&lt;div class="some-class"&gt;Hello!!!&lt;/div&gt;
+						&lt;div&gt;World&lt;/div&gt;
+					&lt;/body&gt;
+				&lt;/html&gt;
+			</code>
+		</pre>
+		<script>
+			function genFrame(){
+				var html = document.getElementById("htmlcode").innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">"),
+					frame = document.createElement("frame"),
+					d;
+
+					document.getElementById("frame").appendChild(frame);
+
+					d = frame.contentDocument;
+
+					d.write(html);
+
+					window.d = d;
+			};
+
+			genFrame();
+		</script>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM Tree</h2>
+		<ol>
+			<li>html
+				<ol>
+					<li>head
+						<ol>
+							<li>script [id="script"]</li>
+						</ol>
+					</li>
+					<li>body
+						<ol>
+							<li>div [class="some-class"]
+								<ol>
+									<li>Hello!!!</li>
+								</ol>
+							</li>
+							<li>div
+								<ol>
+									<li>World</li>
+								</ol>
+							</li>
+						</ol>
+					</li>
+				</ol>
+			</li>
+		</ol>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: Поиск элементов</h2>
+		<pre class="" style="">
+			<code class="js">
+var d = document;
+
+d.getElementsByTagName("div"); // NodeList
+
+d.getElementsByClassName("some-class"); // NodeList
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: Поиск элементов</h2>
+		<pre class="place l" style="left: -50px">
+			<code class="js">
+				d.querySelectorAll(".some-class"); // Array
+
+				d.querySelector(".some-class"); // Node
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: NodeList vs Array</h2>
+		<pre >
+			<code class="js">
+var divs = d.getElementsByTagName("div");
+alert(divs.length); // 2
+divs[1].parentNode.removeChild(divs[1]);
+alert(divs.length); // 1
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: NodeList vs Array</h2>
+		<pre >
+			<code class="js">
+var divs = d.querySelectorAll(".some-class");;
+alert(divs.length); // 1
+divs[0].parentNode.removeChild(divs[0]);
+alert(divs.length); // 1
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: Поиск элементов</h2>
+		<pre class="place l" style="left: -50px">
+			<code class="js">
+				d.getElementById("script"); // Node
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: Создание элементов</h2>
+		<pre class="" style="left: -50px">
+			<code class="js">
+		var el = d.createElement("div");
+		el.className = "some-class";
+		el.id = "some-id";
+		el.style.backgroundColor = "red";
+		el.innerHTML = "Hello, <b>my lord</b>!";
+		d.body.appendChild(el);
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: className (addClass)</h2>
+		<pre class="place l b" style="left: -50px">
+			<code class="js">
+		var el = d.createElement("div");
+		el.className = "some-class-2";
+		if ((" " + el.className + " ").indexOf(" some-class ") == -1){
+			el.className += " some-class";
+		}
+		alert(el.className); // "some-class-2 some-class"
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: className (removeClass)</h2>
+		<pre class="place l b" style="">
+			<code class="js">
+		var el = d.createElement("div");
+		el.className = "some-class some-class-2";
+		el.className = el.className
+			.replace(/(^|\s)some-class(\s|$)/g, "$1")
+		alert(el.className); // "some-class-2"
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: classList</h2>
+		<pre class="" style="">
+			<code class="js">
+	var el = d.createElement("div");
+	el.classList.add("some-class-2");
+	el.classList.remove("some-class");
+	alert(el.classList.contains("some-class")); // false
+	alert(el.classList.contains("some-class-2")); // true
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: дерево</h2>
+		<pre class="" style="">
+			<code class="js">
+				ДЕМКУ НАДО
+	var el = d.getElementById("script");
+	el.parentNode // родительский элемент
+	el.firstChild // первый дочерний
+	el.lastChild // первый дочерний
+	el.children // массив всех дочерних
+	el.nextSibling // следующий сестринский
+	el.previousSibling // предыдущий сестринский
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: удаление элементов</h2>
+		<pre class="" style="">
+			<code class="js">
+				el.parentNode.removeChild(el);
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>DOM: вставка элементов</h2>
+		<pre class="" style="">
+			<code class="js">
+				parent.appendChild(newel);
+				parent.insertBefore(node, newel);
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Code Samples</h2>
+		<pre>
+			<code class="html">&lt;!DOCTYPE html&gt;</code>
+			<code class="html">&lt;html lang="en"&gt;</code>
+			<code class="html"><mark>&lt;head&gt;</mark> <mark class="comment">&lt;!--Comment--&gt;</mark></code>
+			<code class="html">    &lt;title&gt;Shower&lt;/title&gt;</code>
+			<code class="html">    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
+			<code class="html">    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
+			<code class="html"><mark>&lt;/head&gt;</mark></code>
+		</pre>
+	</div></section>
+	<script src="shower/shower.min.js"></script>
+	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+	<script src="Jit/Jit.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<!-- Copyright © 2013 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>
