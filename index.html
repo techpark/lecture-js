@@ -559,14 +559,34 @@
 			</code>
 		</pre>
 	</div></section>
+
 	<section class="slide"><div>
 		<h2>Регулярные выражения</h2>
-		<pre class="">
-			<code class="js">
-				
+		<p>&mdash; формальный язык поиска и осуществления манипуляций с подстроками в тексте, основанный на использовании метасимволов.</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Регулярные выражения</h2>
+		<pre>
+			<code class="js-trim js">
+				// Полная форма
+				var reg = new RegExp("(js|javascript)", "i");
+
+				// Сокращенная форма
+				var reg = /(js|javascript)/i;
 			</code>
 		</pre>
 	</div></section>
+
+	<section class="slide"><div>
+		<h2>Регулярные выражения: строки</h2>
+		<ul>
+			<li><strong>search</strong>(regexp) &mdash; поиск позиции подстроки</li>
+			<li><strong>replace</strong>(regexp, newSubStr) &mdash; замена искомой подстроки на новую</li>
+			<li><strong>match</strong>(regexp) &mdash; возвращает массив со всеми совпадениями</li>
+		</ul>
+	</div></section>
+
 	<section class="slide"><div>
 		<div id="frame" style="display:none">
 		</div>
@@ -776,6 +796,22 @@ alert(divs.length); // 1
 			<code class="html"><mark>&lt;/head&gt;</mark></code>
 		</pre>
 	</div></section>
+
+	<script>
+		(function (){
+			var items = document.getElementsByClassName('js-trim'), i = items.length;
+			while( i-- ){
+				var el = items[i];
+				var lines = el.innerHTML.split('\n').slice(1, -1);
+				var length = lines[0].match(/^\s+/)[0].length;
+
+				el.innerHTML = lines.map(function (line){
+					return line.substr(length);
+				}).join('\n');
+			}
+		})();
+	</script>
+
 	<script src="shower/shower.min.js"></script>
 	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
