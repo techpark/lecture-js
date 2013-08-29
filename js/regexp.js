@@ -40,8 +40,7 @@ window['regexp'] = function ($, el){
 			var groups = arguments, i, n = arguments.length - 2;
 
 			for( i = n; i >= 1; i-- ){
-				var div = document.createElement('div');
-				div.style.position = 'absolute';
+				var div = $('<div style="position: absolute"/>')[0];
 
 				div.innerHTML = (resultString.substr(0, groups[n]) + str.replace(
 					groups[i],

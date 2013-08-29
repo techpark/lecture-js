@@ -16,6 +16,22 @@
 			cursor: text;
 			display: block;
 		}
+
+		.mp-tick {
+			width: 15px;
+			height: 30px;
+			border-radius: 5px;
+			background-color: #3e999f;
+			box-shadow: 0 1px 1px rgba(0,0,0,.4);
+			display: inline-block;
+		}
+			.mp-tick.white {
+				background-color: #fff;
+			}
+
+			.mp-tick.purple {
+				background-color: #8959a8;
+			}
 	</style>
 </head>
 <body class="list">
@@ -650,6 +666,39 @@
 	</div></section>
 
 	<section class="slide"><div>
+		<h2>Микропаттерны: debouncing</h2>
+		<div>
+			Если дословно переводить — «устранение дребезга».
+			Позволяет превратить несколько вызовов функции в течение определенного времени в один вызов.
+		</div>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Микропаттерны: Throttling</h2>
+		<div>
+			Функция будет выполняться не чаще одного раза в указанный период,
+			даже если она будет вызвана много раз в течение этого периода. Т.е. все промежуточные вызовы
+			будут игнорироваться.
+		</div>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Микропаттерны: пример</h2>
+		<div data-ctrl="micro-patterns">
+			<div>
+				<b>Debouncing</b>
+				<div class="debouncing" style="height: 150px"></div>
+			</div>
+
+			<div>
+				<b>Throttling</b>
+				<div class="throttling"></div>
+			</div>
+		</div>
+	</div></section>
+
+
+	<section class="slide"><div>
 		<div id="frame" style="display:none">
 		</div>
 		<h2>DOM</h2>
@@ -894,8 +943,16 @@ alert(divs.length); // 1
 			HTMLElement.prototype.off = HTMLElement.prototype.removeEventListener;
 
 			var $ = function (selector, ctx){
-				return (ctx || document).querySelectorAll(selector);
+				if( /</.test(selector) ){
+					var div = document.createElement('div');
+					div.innerHTML = selector;
+					return	div.children;
+				}
+				else {
+					return (ctx || document).querySelectorAll(selector);
+				}
 			};
+
 
 			function queryEach(selector, fn){
 				var items = $(selector), i = items.length;
