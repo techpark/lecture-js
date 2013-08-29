@@ -39,13 +39,13 @@ window['regexp'] = function ($, el){
 		resultEl.innerHTML = resultString.replace(regexp, function (str){
 			var groups = arguments, i, n = arguments.length - 2;
 
-			for( i = 1; i < n; i++ ){
+			for( i = n; i >= 1; i-- ){
 				var div = document.createElement('div');
 				div.style.position = 'absolute';
 
 				div.innerHTML = (resultString.substr(0, groups[n]) + str.replace(
 					groups[i],
-					'<span style="border-bottom: 3px solid '+colors2[i]+'; background-color: rgba(255,255,255,.4)">'+groups[i]+'</span>'
+					'<span style="padding-bottom: '+((i-1)*3)+'px;border-bottom: 3px solid '+colors2[i]+'; background-color: rgba(255,255,255,.4)">'+groups[i]+'</span>'
 				)).replace(/\n/g, '<br/>');
 
 				resultHL.appendChild(div);
