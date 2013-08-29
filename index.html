@@ -6,6 +6,17 @@
 	<meta name="viewport" content="width=792, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+	<style>
+		.inp_regexp {
+			font-size: 180%;
+			width: 95%;
+			margin: 0 auto;
+			text-align: center;
+			line-height: 90px;
+			cursor: text;
+			display: block;
+		}
+	</style>
 </head>
 <body class="list">
 	<header class="caption">
@@ -579,12 +590,63 @@
 	</div></section>
 
 	<section class="slide"><div>
+		<h2>Основные метасимволы</h2>
+		<ul>
+			<li>^ &mdash; начало строки</li>
+			<li>$ &mdash; конец строки</li>
+			<li>* &mdash; повторение 0 или более раз</li>
+			<li>+ &mdash; повторение 1 или более раз, эквивалентно {1,}</li>
+			<li>? &mdash; элемент может как присутсвовать, так и отсутствовать</li>
+			<li>. &mdash; обозначает любой символ, кроме перевода строки: \n \r</li>
+			<li>(x) &mdash; находит <b>x</b> и запоминает, это называется "запоминающие скобки"</li>
+			<li>(?:x) &mdash; находит <b>x</b>, но не запоминает</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Основные метасимволы</h2>
+		<ul>
+			<li>[abc] &mdash; нобор символов, найти любой из перечесленных</li>
+			<li>[^xyz] &mdash; любые символы, кроме указанных в наборе</li>
+			<li>[a-z0-9] &mdash; интервал(ы) символов</li>
+			<li>\d &mdash; либая цифра</li>
+			<li>\w &mdash; любой словесный (латинский алфавит) символ, включая буквы, цифры и знак подчеркивания</li>
+			<li>x|y &mdash; найти <b>x</b> или <b>y</b></li>
+			<li>\b &mdash; граница слов (латинских)</li>
+			<li>\s &mdash; любой пробельный символ</li>
+			<li>\t &mdash; табуляция</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Регулярные выражения</h2>
+		<p>Увы, невозможно объяснить, что такое регулярные выражения за одну лекцию, поэтому мы покажем только их малые возможности.</p>
+	</div></section>
+
+	<section class="slide"><div>
 		<h2>Регулярные выражения: строки</h2>
 		<ul>
 			<li><strong>search</strong>(regexp) &mdash; поиск позиции подстроки</li>
 			<li><strong>replace</strong>(regexp, newSubStr) &mdash; замена искомой подстроки на новую</li>
 			<li><strong>match</strong>(regexp) &mdash; возвращает массив со всеми совпадениями</li>
 		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Регулярные выражения: search</h2>
+		<div data-ctrl="regexp">
+			<input value="/J([a-z])+(Sc(ri(p)t))/" class="inp_regexp" />
+
+			<div style="margin: 50px auto 0; width: 90%; font-size: 150%; position: relative;">
+				<div class="result-hl" style="position: absolute; width: 100%"></div>
+				<div class="result">
+					JavaScript, сокращенно js.<br/>
+					Емэйл: js@mail.ru, lecture-js@mail.ru<br/>
+					http://techpark.github.com/lecture-js
+					https://github.com/techpark/lecture-js/
+				</div>
+			</div>
+		</div>
 	</div></section>
 
 	<section class="slide"><div>
@@ -799,23 +861,54 @@ alert(divs.length); // 1
 
 	<script>
 		(function (){
-			var items = document.getElementsByClassName('js-trim'), i = items.length;
-			while( i-- ){
-				var el = items[i];
+			HTMLElement.prototype.on = HTMLElement.prototype.addEventListener;
+			HTMLElement.prototype.off = HTMLElement.prototype.removeEventListener;
+
+			var $ = function (selector, ctx){
+				return (ctx || document).querySelectorAll(selector);
+			};
+
+			function queryEach(selector, fn){
+				var items = $(selector), i = items.length;
+				while( i-- ){
+					fn(items[i]);
+				}
+			}
+
+			// TRIM
+			queryEach('.js-trim', function (el){
 				var lines = el.innerHTML.split('\n').slice(1, -1);
 				var length = lines[0].match(/^\s+/)[0].length;
 
 				el.innerHTML = lines.map(function (line){
 					return line.substr(length);
 				}).join('\n');
-			}
+			});
+
+			// Include JS
+			queryEach('[data-ctrl]', function (el){
+				var ctrl = el.dataset.ctrl;
+				var script = document.createElement('script');
+				var pid = setInterval(function (){
+					if( window[ctrl] ){
+						clearInterval(pid);
+						window[ctrl]($, el);
+					}
+				}, 30);
+
+
+				script.src = 'js/'+ctrl+'.js';
+				script.async = true;
+
+				el.appendChild(script);
+			});
 		})();
 	</script>
 
-	<script src="shower/shower.min.js"></script>
+	<script src="shower/shower.js"></script>
 	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
-	<script src="Jit/Jit.js"></script>
+	<!--script src="Jit/Jit.js"></script-->
 	<script>hljs.initHighlightingOnLoad();</script>
 	<!-- Copyright © 2013 Yours Truly, Famous Inc. -->
 	<!-- Photos by John Carey, fiftyfootshadows.net -->

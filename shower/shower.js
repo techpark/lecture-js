@@ -798,6 +798,10 @@ window.shower = window.shower || (function(window, document, undefined) {
 	}, false);
 
 	document.addEventListener('keydown', function(e) {
+		if( shower.freeze ){
+			return;
+		}
+
 		var currentSlideNumber = shower.getCurrentSlideNumber(),
 			slide = shower.slideList[ currentSlideNumber !== -1 ? currentSlideNumber : 0 ],
 			slideNumber;
