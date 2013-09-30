@@ -17,6 +17,20 @@
 			display: block;
 		}
 
+		.inp {
+			font-size: 140%;
+			width: 95%;
+			margin: 0 auto;
+			text-align: center;
+			line-height: 50px;
+			cursor: text;
+			display: block;
+		}
+
+			.inp_error {
+				border-color: red;
+			}
+
 		.mp-tick {
 			width: 15px;
 			height: 30px;
@@ -867,7 +881,6 @@ alert(divs.length); // 1
 		<h2>DOM: дерево</h2>
 		<pre class="" style="">
 			<code class="js">
-				ДЕМКУ НАДО
 	var el = d.getElementById("script");
 	el.parentNode // родительский элемент
 	el.firstChild // первый дочерний
@@ -925,6 +938,91 @@ alert(divs.length); // 1
 		</pre>
 	</div></section>
 	<section class="slide"><div>
+		<h2>События: ненавязчиво (DOM2)</h2>
+		<a href="http://mail.ru" target="blank" id="clickme">click me!!!</a>
+		<pre class="" style="">
+			<code class="js">
+	&lt;a href="http://mail.ru"&gt;click me!!!&lt;/a&gt;
+	&lt;script&gt;
+		link.addEventListener("click", function(e){
+			<mark>alert('tada!!!'); e.preventDefault();</mark>
+		}, false);
+	&lt;/script&gt;
+			</code>
+		</pre>
+		<script>
+			document.getElementById("clickme").addEventListener("click", function(e){ alert('tada!!!'); e.preventDefault(); }, false);
+		</script>
+	</div></section>
+	<section class="slide"><div>
+		<h2>События: типы событий</h2>
+		<ul>
+			<li>клавиатура</li>
+			<li>мышь</li>
+			<li>элементы формы</li>
+			<li>touch</li>
+			<li>не связанные с действиями пользователя</li>
+		</ul>
+	</div></section>
+	<section class="slide"><div>
+		<h2>События: объект event</h2>
+		<pre class="" style="">
+			<code class="js">
+	e.type // тип события
+	e.keyCode, e.charCode // нажатая клавиша
+	altKey, crtlKey, shiftKey // была ли нажата клавиша
+	screenX/Y, pageX/Y // координаты
+	target // DOM Node
+	which // кнопка мыши
+
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>События: мышь</h2>
+		<ul>
+			<li>click</li>
+			<li>mouseenter</li>
+			<li>mouseleave</li>
+			<li>mousedown</li>
+			<li>mousemove</li>
+			<li>mouseup</li>
+		</ul>
+	</div></section>
+	<section class="slide"><div>
+		<h2>События: клавиатура</h2>
+		<ul>
+			<li>keydown</li>
+			<li>keyup</li>
+			<li>keypress</li>
+		</ul>
+	</div></section>
+	<section class="slide"><div>
+		<h2>События: элементы формы</h2>
+		<ul>
+			<li>input</li>
+			<li>change</li>
+			<li>focus</li>
+			<li>blur</li>
+		</ul>
+	</div></section>
+	<section class="slide"><div>
+		<h2>События: форма</h2>
+		<ul>
+			<li>submit</li>
+		</ul>
+	</div></section>
+	<section class="slide shout"><div>
+		<h2>Валидация</h2>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Валидация: обязательное поле</h2>
+
+	</div></section>
+
+
+
+	<!--<section class="slide"><div>
 		<h2>Code Samples</h2>
 		<pre>
 			<code class="html">&lt;!DOCTYPE html&gt;</code>
@@ -935,7 +1033,7 @@ alert(divs.length); // 1
 			<code class="html">    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
 			<code class="html"><mark>&lt;/head&gt;</mark></code>
 		</pre>
-	</div></section>
+	</div></section>-->
 
 	<script>
 		(function (){
