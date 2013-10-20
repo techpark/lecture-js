@@ -155,13 +155,13 @@
 		<h2>Типы данных: строка (преобразования)</h2>
 		<pre>
 			<code class="js">
-				var s = "Cтр";
-				s += "ока";
+			var s = "Cтр";
+			s += "ока";
 
-				alert(s.charAt(2)); // "р"
-				alert(s.toLowerCase()); // "строка"
-				alert(s.toUpperCase()); // "СТРОКА"
-				alert(s.indexOf("пека")); // -1
+			alert(s.charAt(2)); // "р"
+			alert(s.toLowerCase()); // "строка"
+			alert(s.toUpperCase()); // "СТРОКА"
+			alert(s.indexOf("пека")); // -1
 			</code>
 		</pre>
 	</div></section>
@@ -216,12 +216,12 @@
 		<h2>Типы данных: object</h2>
 		<pre>
 			<code class="js">
-				var lecturerSettings = {
-					minStudentRating: 2,
-					maxStudentRating: 5
-				};
+		var lecturerSettings = {
+			minStudentRating: 2,
+			maxStudentRating: 5
+		};
 
-				minStudentRating = 5;
+		lecturerSettings.minStudentRating = 5;
 			</code>
 		</pre>
 	</div></section>
@@ -337,10 +337,10 @@
 		<h2>typeof</h2>
 		<pre>
 			<code class="js">
-				alert(typeof 10); // "number"
-				alert(typeof "string"); // "string"
-				alert(typeof {}); // "object"
-				alert(typeof function(){}); // "function"
+		alert(typeof 10); // "number"
+		alert(typeof "string"); // "string"
+		alert(typeof {}); // "object"
+		alert(typeof function(){}); // "function"
 			</code>
 		</pre>
 	</div></section>
@@ -512,7 +512,7 @@
 	<section class="slide"><div>
 		<h2>continue</h2>
 		<pre>
-			<code class="js">
+			<code class="js" style="margin-top: -50px;">
 				var x = 0, i = 0;
 
 				while (i &lt; 100){
@@ -597,6 +597,161 @@
 				}
 
 				alert(factorial(5)); // 120
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Области видимости</h2>
+		<pre class="place" style="margin: 50px 0 0 -100px">
+			<code class="js">
+				var x = 1;
+				function one(){
+					var y = 10;
+					function two(){ alert(x); alert(y); }
+					two();
+				}
+				function three(){ alert(y); }
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Замыкания</h2>
+		<pre xclass="place" xstyle="margin: 50px 0 0 -100px">
+			<code class="js">
+				function one(){
+					var y = 10;
+					alert(y);
+				}
+				one();
+				// y == undefined
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Замыкания</h2>
+		<pre xclass="place" style="margin: -70px 0 0 0">
+			<code class="js">
+				function one(){
+					var y = 10;
+					return function(){
+						alert(y);
+					}
+				}
+				var x = one();
+				// y == undefined
+				x(); // 10
+			</code>
+		</pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Замыкания</h2>
+		<pre xclass="place" style="margin: 0 0 0 -140px">
+			<code class="js">
+				function one(){
+					var y = 10;
+					setTimeout(function(){ alert(y); }, 1000);
+				}
+				one();
+			</code>
+		</pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Конструктор</h2>
+		<pre xclass="place" xstyle="margin: 0 0 0 -140px">
+			<code class="js">
+				function One(somevar){
+					this.y = somevar || 1;
+				}
+
+				var x = new One(10);
+				alert(x.y); // 10
+			</code>
+		</pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>instanceof</h2>
+		<pre xclass="place" xstyle="margin: 0 0 0 -140px">
+			<code class="js">
+				var x = new One(10);
+				alert(x instanceof One); // true
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>prototype</h2>
+		<pre xclass="place" style="margin: 0 0 0 -140px">
+			<code class="js">
+				function One(){ this.x = 1; }
+				One.prototype.some = function(){ this.x = 10; }
+				var y = new One();
+				alert(y.x); // 1
+				y.some();
+				alert(y.x); // 10
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>prototype</h2>
+		<pre xclass="place" style="margin: 0 0 0 -140px">
+			<code class="js">
+				One.prototype.some2 = function(){ this.x = 20; }
+				y.some2();
+				alert(y.x); // 20
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>prototype</h2>
+		<pre xclass="place" style="margin: 0 0 0 -140px">
+			<code class="js">
+				function Two(){}
+				Two.prototype = new One();
+				Two.prototype.some2 = function(){ this.x = 100; };
+				var z = new Two();
+				z.some2();
+				alert(z.x); // 100
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Все – объект</h2>
+		<pre xclass="place" style="margin: 0 0 0 -140px">
+			<code class="js">
+				alert(One.valueOf());
+				One.some = 100500;
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>this – контекст</h2>
+		<pre xclass="place" style="margin: -50px 0 0 -140px">
+			<code class="js">
+				var x = 10;
+				function one(){
+					function two(){
+						alert(this.x);
+					}
+					two();
+				}
+				one(); // 10
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>this – контекст</h2>
+		<pre xclass="place" style="margin: -50px 0 0 -140px">
+			<code class="js">
+				var y = 2;
+				var x = {
+					y: 1
+				};
+				function one(){
+					alert(this.y);
+				}
+				one.call(x); // 1
 			</code>
 		</pre>
 	</div></section>
@@ -713,12 +868,10 @@
 
 
 	<section class="slide"><div>
-		<div id="frame" style="display:none">
-		</div>
 		<h2>DOM</h2>
 		<pre class="place l b" style="bottom: -50px">
 			<code class="html" id="htmlcode">
-				&lt;html&gt;
+				<a target="_blank" href="demos/dom.html">&lt;html&gt;</a>
 					&lt;head&gt;
 						&lt;script id="script"&gt;&lt;/script&gt;
 					&lt;/head&gt;
@@ -729,51 +882,6 @@
 				&lt;/html&gt;
 			</code>
 		</pre>
-		<script>
-			function genFrame(){
-				var html = document.getElementById("htmlcode").innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">"),
-					frame = document.createElement("frame"),
-					d;
-
-					document.getElementById("frame").appendChild(frame);
-
-					d = frame.contentDocument;
-
-					d.write(html);
-
-					window.d = d;
-			};
-
-			genFrame();
-		</script>
-	</div></section>
-	<section class="slide"><div>
-		<h2>DOM Tree</h2>
-		<ol>
-			<li>html
-				<ol>
-					<li>head
-						<ol>
-							<li>script [id="script"]</li>
-						</ol>
-					</li>
-					<li>body
-						<ol>
-							<li>div [class="some-class"]
-								<ol>
-									<li>Hello!!!</li>
-								</ol>
-							</li>
-							<li>div
-								<ol>
-									<li>World</li>
-								</ol>
-							</li>
-						</ol>
-					</li>
-				</ol>
-			</li>
-		</ol>
 	</div></section>
 	<section class="slide"><div>
 		<h2>DOM: Поиск элементов</h2>
@@ -1016,8 +1124,77 @@ alert(divs.length); // 1
 		<h2>Валидация</h2>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Валидация: обязательное поле</h2>
-
+		<h2>Валидация</h2>
+		<ul>
+			<li>Серверная обязательна</li>
+			<li><a href="demos/html5.html" target="_blank">HTML5</a> для клиентов без JS (базовая)</li>
+			<li>Расширенная JS</li>
+		</ul>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Отключение html5 валидации</h2>
+		<pre class="" style="">
+			<code class="js">
+	var form = document.getElementsByTagName('form')[0];
+	form.noValidate = true;
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Обязательное поле</h2>
+		<pre class="" style="margin-left: -50px;">
+			<code class="js">
+var i = document.getElementById('first-name');
+function valRequired(e){
+	alert(e.target.value);
+}
+i.addEventListener('input', valRequired, false);
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Обязательное поле</h2>
+		<pre class="" style="margin-left: -50px;">
+			<code class="js">
+var i = document.getElementById('first-name');
+function valRequired(e){
+	var isValid = !!e.target.value;
+	setError(e.target, !isValid);
+	return isValid;
+}
+i.addEventListener('input', valRequired, false);
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Обязательное поле</h2>
+		<pre class="" style="margin-left: -50px;">
+			<code class="js">
+var i = document.getElementById('email');
+function valEmail(e){
+	var isValid = !!e.target.value.match(/.+?@(.+?\.)+.+/i);
+	setError(e.target, !isValid);
+	return isValid;
+}
+i.addEventListener('input', valEmail, false);
+			</code>
+		</pre>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Сабмит формы</h2>
+		<pre class="" style="margin-left: -50px;">
+			<code class="js">
+var f = document.getElementsByTagName('form')[0];
+function valForm(e){
+	var isValid = true;
+	// validate
+	if (!isValid){
+		e.preventDefault();
+	}
+}
+f.addEventListener('submit', valForm, false);
+			</code>
+		</pre>
 	</div></section>
 
 
@@ -1090,8 +1267,8 @@ alert(divs.length); // 1
 	</script>
 
 	<script src="shower/shower.js"></script>
-	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
-	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+	<link rel="stylesheet" href="js/default.min.css">
+	<script src="js/highlight.min.js"></script>
 	<!--script src="Jit/Jit.js"></script-->
 	<script>hljs.initHighlightingOnLoad();</script>
 	<!-- Copyright © 2013 Yours Truly, Famous Inc. -->
